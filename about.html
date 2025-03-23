@@ -5,56 +5,51 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="src/script.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>Kenny Doan</title>
 </head>
 <body>
-  <div class="header">
-    <h1 class="title">Kenny Doan</h1>
-    <ul class="nav">
-      <li><a href="/" class="mx-1 transition text-white hover:text-white/70">Home</a></li>
-      <li><a href="/unreal-work" class="mx-1 transition text-white hover:text-white/70">Unreal Work</a></li>
-      <li><a href="/about" class="mx-1 transition text-white hover:text-white/70">About</a></li>
-      <li><a href="/work" class="mx-1 transition text-white hover:text-white/70">Work</a></li>
-      <li><a href="/misc" class="mx-1 transition text-white hover:text-white/70">Misc</a></li>
-      <li><a href="/contact" class="mx-1 transition text-white hover:text-white/70">Contact</a></li>
-      <li><a href="/cv" class="mx-1 transition text-white hover:text-white/70">CV</a></li>
-      <li><a href="" target="_blank" class="mx-1 transition text-white hover:text-white/70">LI</a></li>
-      <li><a href="" target="_blank" class="mx-1 transition text-white hover:text-white/70">FB</a></li>
-    </ul>
-  </div>
+    <div id="header-container"></div>
 
-  <section class="bg-[#0c0c0d] text-white text-center">
-    <div class="max-w-screen-lg mx-auto p-4">
-      <h1 class="text-[4em] font-bold pt-8">Saleblazers</h1>
-      <p class="text-2xl font-bold">Programmer</p>
-      <p class="text-2xl py-8 font-medium">Open world, shopkeeping, multiplayer experience where players must make as much money as they can and explore the world in order to get off the island. Build shops, survive the night,  steal from locals, or just chill with friends in the shop!</p>
-      <iframe class="border-0 w-full aspect-[16/9]" src="https://www.youtube.com/embed/VkKcCM7df00?autoplay=0&mute=0&controls=1&loop=0"></iframe>
-      <div class="pt-8 pb-4">
-        <a href="https://store.steampowered.com/app/1419850/Saleblazers/" target="_blank">
-          <button class="cursor-pointer px-8 py-3 text-xl font-bold border border-white hover:bg-white hover:text-black transition">
-            Steam Link
-          </button>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-[#2b2623] text-white text-center">
-    <div class="max-w-screen-lg mx-auto p-4">
-      <h1 class="text-[4em] font-bold pt-8">Smithworks</h1>
-      <p class="text-2xl font-bold">Director, Lead Engineer, Designer</p>
-      <p class="text-2xl py-8 font-medium">Cooperative, fun, and unique multiplayer experience where everyone plays as fledging blacksmiths trying to meet the crazy demands of the customers.  Players take on contracts form the Smithworks guild taking place in many different areas around the world. Players must learn to communicate and cooperate effectively in order to complete these contracts</p>
-      <iframe class="border-0 w-full aspect-[16/9]" src="https://www.youtube.com/embed/E3nhMmUAZYE?autoplay=0&mute=0&controls=1&loop=0"></iframe>
-      <div class="pt-8 pb-4">
-        <a href="https://store.steampowered.com/app/1568540/Smithworks/" target="_blank">
-          <button class="cursor-pointer px-8 py-3 text-xl font-bold border border-white hover:bg-white hover:text-black transition">
-            Steam Link
-          </button>
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- Include header loader -->
+    <script>
+      fetch('header.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header-container').innerHTML = data;
+    
+          // Now add the event listener after the header content is loaded
+          const menuToggle = document.getElementById('menu-toggle');
+          const mobileMenu = document.getElementById('mobile-menu');
+          const navMenu = document.getElementById('nav-menu');
+    
+          // Toggle the mobile menu visibility when hamburger is clicked
+          menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden'); // Toggle mobile menu visibility
+            mobileMenu.classList.toggle('bg-black'); // Ensure background color is visible when toggled
+          });
+    
+          // Ensure the hamburger menu is only visible on smaller screens
+          function checkScreenSize() {
+            if (window.innerWidth <= 1024) { // Mobile and small screens
+              menuToggle.classList.remove('hidden'); // Show hamburger icon
+              navMenu.classList.add('hidden'); // Hide horizontal nav
+              mobileMenu.classList.add('hidden'); // Hide mobile menu by default
+            } else { // Large screens
+              menuToggle.classList.add('hidden'); // Hide hamburger icon
+              navMenu.classList.remove('hidden'); // Show horizontal nav
+              mobileMenu.classList.add('hidden'); // Hide mobile menu
+            }
+          }
+    
+          // Run on initial load
+          checkScreenSize();
+    
+          // Run on window resize
+          window.addEventListener('resize', checkScreenSize);
+        });
+    </script>
 
 </body>
 </html>
