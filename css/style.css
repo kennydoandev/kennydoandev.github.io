@@ -1,0 +1,25 @@
+body {
+  background-color: #0c0c0d;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #0c0c0d;
+  color: #fff;
+}
+
+.title {
+  font-size: 1.5em;
+  padding: 0.5em;
+}
+
+.nav {
+  display: flex;
+  gap: 0.5em;
+  list-style: none;
+}
